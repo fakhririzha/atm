@@ -37,7 +37,7 @@ public class MenuATM extends javax.swing.JFrame {
         menu7 = new javax.swing.JButton();
         menu8 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        labelNama = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,9 +82,9 @@ public class MenuATM extends javax.swing.JFrame {
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        labelNama.setColumns(20);
+        labelNama.setRows(5);
+        jScrollPane1.setViewportView(labelNama);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -204,7 +204,7 @@ public class MenuATM extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea labelNama;
     private javax.swing.JButton menu1;
     private javax.swing.JButton menu2;
     private javax.swing.JButton menu3;
