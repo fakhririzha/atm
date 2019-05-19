@@ -115,6 +115,7 @@ public class MainInterface extends javax.swing.JFrame {
             System.out.println("SQLException: " + e.getMessage());
             System.out.println("SQLState: " + e.getSQLState());
             System.out.println("VendorError: " + e.getErrorCode());
+            JOptionPane.showMessageDialog(this, "Informasi login anda tidak valid.", "Error", JOptionPane.ERROR_MESSAGE);
         }
         finally{
             if(rs != null){
