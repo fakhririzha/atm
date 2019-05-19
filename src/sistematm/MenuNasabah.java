@@ -50,6 +50,11 @@ public class MenuNasabah extends javax.swing.JFrame {
         });
 
         limaratusRibu.setText("500.000");
+        limaratusRibu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limaratusRibuActionPerformed(evt);
+            }
+        });
 
         bayarBeli.setText("BAYAR/BELI");
 
@@ -146,15 +151,88 @@ public class MenuNasabah extends javax.swing.JFrame {
     }//GEN-LAST:event_eMoneyActionPerformed
 
     private void tigaratusRibuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tigaratusRibuActionPerformed
-        // TODO add your handling code here:
+        Statement stmt = null;
+        ResultSet rs = null;
+        Connection conn = null;
+        int saldoAkhir;
+        try {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/sistem_atm?" + "user=root&password=");
+            stmt = conn.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_UPDATABLE);
+            rs = stmt.executeQuery("SELECT * FROM saldo WHERE norek='"+norek+"'");
+            rs.next();
+            if(Integer.parseInt(rs.getString(2))<300000){
+                javax.swing.JOptionPane.showMessageDialog(this, "Saldo anda tidak cukup.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+                saldoAkhir = Integer.parseInt(rs.getString(2))-300000;
+                rs.updateInt(2, saldoAkhir);
+                rs.updateRow();
+                javax.swing.JOptionPane.showMessageDialog(this, "Transaksi anda sukses.", "Sukses", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                javax.swing.JOptionPane.showMessageDialog(this, "Sisa saldo anda: Rp. "+rs.getString(2)+",-", "Sukses", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+        catch(SQLException e){
+            System.out.println("SQLException: " + e.getMessage());
+            System.out.println("SQLState: " + e.getSQLState());
+            System.out.println("VendorError: " + e.getErrorCode());
+            javax.swing.JOptionPane.showMessageDialog(this, "Informasi login anda tidak valid.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+        finally{
+            if(rs != null){
+                try {
+                    rs.close();
+                } catch (SQLException SQLEx){}
+
+                stmt = null;
+            }
+        };
     }//GEN-LAST:event_tigaratusRibuActionPerformed
 
     private void satuJutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_satuJutaActionPerformed
-        // TODO add your handling code here:
+        Statement stmt = null;
+        ResultSet rs = null;
+        Connection conn = null;
+        int saldoAkhir;
+        try {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/sistem_atm?" + "user=root&password=");
+            stmt = conn.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_UPDATABLE);
+            rs = stmt.executeQuery("SELECT * FROM saldo WHERE norek='"+norek+"'");
+            rs.next();
+            if(Integer.parseInt(rs.getString(2))<1000000){
+                javax.swing.JOptionPane.showMessageDialog(this, "Saldo anda tidak cukup.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+                saldoAkhir = Integer.parseInt(rs.getString(2))-1000000;
+                rs.updateInt(2, saldoAkhir);
+                rs.updateRow();
+                javax.swing.JOptionPane.showMessageDialog(this, "Transaksi anda sukses.", "Sukses", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                javax.swing.JOptionPane.showMessageDialog(this, "Sisa saldo anda: Rp. "+rs.getString(2)+",-", "Sukses", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+        catch(SQLException e){
+            System.out.println("SQLException: " + e.getMessage());
+            System.out.println("SQLState: " + e.getSQLState());
+            System.out.println("VendorError: " + e.getErrorCode());
+            javax.swing.JOptionPane.showMessageDialog(this, "Informasi login anda tidak valid.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+        finally{
+            if(rs != null){
+                try {
+                    rs.close();
+                } catch (SQLException SQLEx){}
+
+                stmt = null;
+            }
+        };
     }//GEN-LAST:event_satuJutaActionPerformed
 
     private void tarikManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tarikManualActionPerformed
-        // TODO add your handling code here:
+        new TarikTunai(this.norek).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_tarikManualActionPerformed
 
     private void transaksiLainnyaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transaksiLainnyaActionPerformed
@@ -201,6 +279,46 @@ public class MenuNasabah extends javax.swing.JFrame {
             }
         };
     }//GEN-LAST:event_seratusRibuActionPerformed
+
+    private void limaratusRibuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limaratusRibuActionPerformed
+        Statement stmt = null;
+        ResultSet rs = null;
+        Connection conn = null;
+        int saldoAkhir;
+        try {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/sistem_atm?" + "user=root&password=");
+            stmt = conn.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_UPDATABLE);
+            rs = stmt.executeQuery("SELECT * FROM saldo WHERE norek='"+norek+"'");
+            rs.next();
+            if(Integer.parseInt(rs.getString(2))<500000){
+                javax.swing.JOptionPane.showMessageDialog(this, "Saldo anda tidak cukup.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+                saldoAkhir = Integer.parseInt(rs.getString(2))-500000;
+                rs.updateInt(2, saldoAkhir);
+                rs.updateRow();
+                javax.swing.JOptionPane.showMessageDialog(this, "Transaksi anda sukses.", "Sukses", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                javax.swing.JOptionPane.showMessageDialog(this, "Sisa saldo anda: Rp. "+rs.getString(2)+",-", "Sukses", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+        catch(SQLException e){
+            System.out.println("SQLException: " + e.getMessage());
+            System.out.println("SQLState: " + e.getSQLState());
+            System.out.println("VendorError: " + e.getErrorCode());
+            javax.swing.JOptionPane.showMessageDialog(this, "Informasi login anda tidak valid.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+        finally{
+            if(rs != null){
+                try {
+                    rs.close();
+                } catch (SQLException SQLEx){}
+
+                stmt = null;
+            }
+        };
+    }//GEN-LAST:event_limaratusRibuActionPerformed
 
     /**
      * @param args the command line arguments

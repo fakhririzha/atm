@@ -4,18 +4,19 @@
  * and open the template in the editor.
  */
 package sistematm;
-import javax.swing.JOptionPane;
+import java.sql.*;
 
 /**
  *
  * @author Fakhri
  */
 public class TarikTunai extends javax.swing.JFrame {
-
+    private String norek;
     /**
      * Creates new form PenarikanManual
      */
-    public TarikTunai() {
+    public TarikTunai(String no_rek) {
+        this.norek = no_rek;
         initComponents();
     }
 
@@ -34,10 +35,15 @@ public class TarikTunai extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Kozuka Gothic Pro M", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Masukkan nominal yang anda inginkan");
 
         nominalTarikTunai.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        nominalTarikTunai.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                nominalTarikTunaiKeyPressed(evt);
+            }
+        });
 
         btnKonfirmasiTarikTunai.setText("Konfirmasi");
         btnKonfirmasiTarikTunai.addActionListener(new java.awt.event.ActionListener() {
@@ -51,24 +57,24 @@ public class TarikTunai extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(225, Short.MAX_VALUE)
+                .addContainerGap(224, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.CENTER, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                         .addComponent(nominalTarikTunai)
                         .addComponent(btnKonfirmasiTarikTunai))
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(225, Short.MAX_VALUE))
+                .addContainerGap(223, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
+                .addContainerGap(49, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(114, 114, 114)
                 .addComponent(nominalTarikTunai, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(btnKonfirmasiTarikTunai)
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
 
         pack();
@@ -76,19 +82,99 @@ public class TarikTunai extends javax.swing.JFrame {
 
     private void btnKonfirmasiTarikTunaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKonfirmasiTarikTunaiActionPerformed
         // TODO add your handling code here:
-        int nominalInput;
-        nominalInput = Integer.parseInt(nominalTarikTunai.getText().trim());
-        if(nominalInput%50000!=0){
-            String message = "Nominal yang anda masukkan bukan kelipatan Rp. 50.000,-";
-            JOptionPane.showMessageDialog(new javax.swing.JFrame(), message, "Transaksi Gagal",
-            JOptionPane.ERROR_MESSAGE);
-        }
-        else {
-            String message = "Transaksi Anda Sedang Diproses... Silahkan Ambil Uang Anda Pada Tray Box.";
-            JOptionPane.showMessageDialog(new javax.swing.JFrame(), message, "Transaksi Diproses",
-            JOptionPane.INFORMATION_MESSAGE);
+        if(Integer.parseInt(nominalTarikTunai.getText().trim())%50000 == 0){
+            Statement stmt = null;
+            ResultSet rs = null;
+            Connection conn = null;
+            int saldoAkhir;
+            try {
+                conn = DriverManager.getConnection("jdbc:mysql://localhost/sistem_atm?" + "user=root&password=");
+                stmt = conn.createStatement(
+                        ResultSet.TYPE_SCROLL_INSENSITIVE,
+                        ResultSet.CONCUR_UPDATABLE);
+                rs = stmt.executeQuery("SELECT * FROM saldo WHERE norek='"+norek+"'");
+                rs.next();
+                if(Integer.parseInt(rs.getString(2))<Integer.parseInt(nominalTarikTunai.getText().trim())){
+                    javax.swing.JOptionPane.showMessageDialog(this, "Saldo anda tidak cukup.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                }
+                else {
+                    saldoAkhir = Integer.parseInt(rs.getString(2))-Integer.parseInt(nominalTarikTunai.getText().trim());
+                    rs.updateInt(2, saldoAkhir);
+                    rs.updateRow();
+                    javax.swing.JOptionPane.showMessageDialog(this, "Transaksi anda sukses.", "Sukses", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                    javax.swing.JOptionPane.showMessageDialog(this, "Sisa saldo anda: Rp. "+rs.getString(2)+",-", "Sukses", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                    new MenuNasabah(this.norek, "").setVisible(true);
+                    this.dispose();
+                }
+            }
+            catch(SQLException e){
+                System.out.println("SQLException: " + e.getMessage());
+                System.out.println("SQLState: " + e.getSQLState());
+                System.out.println("VendorError: " + e.getErrorCode());
+                javax.swing.JOptionPane.showMessageDialog(this, "Informasi login anda tidak valid.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            }
+            finally{
+                if(rs != null){
+                    try {
+                        rs.close();
+                    } catch (SQLException SQLEx){}
+
+                    stmt = null;
+                }
+            };
+            
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Harus kelipatan Rp. 50.000,-", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnKonfirmasiTarikTunaiActionPerformed
+
+    private void nominalTarikTunaiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nominalTarikTunaiKeyPressed
+        if(evt.getKeyCode()==java.awt.event.KeyEvent.VK_ENTER){
+            if(Integer.parseInt(nominalTarikTunai.getText().trim())%50000 == 0){
+                Statement stmt = null;
+                ResultSet rs = null;
+                Connection conn = null;
+                int saldoAkhir;
+                try {
+                    conn = DriverManager.getConnection("jdbc:mysql://localhost/sistem_atm?" + "user=root&password=");
+                    stmt = conn.createStatement(
+                            ResultSet.TYPE_SCROLL_INSENSITIVE,
+                            ResultSet.CONCUR_UPDATABLE);
+                    rs = stmt.executeQuery("SELECT * FROM saldo WHERE norek='"+norek+"'");
+                    rs.next();
+                    if(Integer.parseInt(rs.getString(2))<Integer.parseInt(nominalTarikTunai.getText().trim())){
+                        javax.swing.JOptionPane.showMessageDialog(this, "Saldo anda tidak cukup.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                    }
+                    else {
+                        saldoAkhir = Integer.parseInt(rs.getString(2))-Integer.parseInt(nominalTarikTunai.getText().trim());
+                        rs.updateInt(2, saldoAkhir);
+                        rs.updateRow();
+                        javax.swing.JOptionPane.showMessageDialog(this, "Transaksi anda sukses.", "Sukses", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                        javax.swing.JOptionPane.showMessageDialog(this, "Sisa saldo anda: Rp. "+rs.getString(2)+",-", "Sukses", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                        new MenuNasabah(this.norek, "").setVisible(true);
+                        this.dispose();
+                    }
+                }
+                catch(SQLException e){
+                    System.out.println("SQLException: " + e.getMessage());
+                    System.out.println("SQLState: " + e.getSQLState());
+                    System.out.println("VendorError: " + e.getErrorCode());
+                    javax.swing.JOptionPane.showMessageDialog(this, "Informasi login anda tidak valid.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                }
+                finally{
+                    if(rs != null){
+                        try {
+                            rs.close();
+                        } catch (SQLException SQLEx){}
+
+                        stmt = null;
+                    }
+                };
+            }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Harus kelipatan Rp. 50.000,-", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_nominalTarikTunaiKeyPressed
 
     /**
      * @param args the command line arguments
@@ -119,11 +205,11 @@ public class TarikTunai extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TarikTunai().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new TarikTunai().setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

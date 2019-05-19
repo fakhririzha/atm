@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package sistematm;
-import java.awt.event.KeyEvent;
 import javax.swing.JLabel;
 import java.sql.*;
 import javax.swing.JOptionPane;
@@ -140,7 +139,7 @@ public class LoginInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonKonfirmasiActionPerformed
 
     private void katasandiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_katasandiKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+        if(evt.getKeyCode()==java.awt.event.KeyEvent.VK_ENTER)
         {
             String password = new String(katasandi.getPassword());
             Statement stmt = null;

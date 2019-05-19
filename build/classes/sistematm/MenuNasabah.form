@@ -90,6 +90,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="500.000"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="limaratusRibuActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="bayarBeli">
       <Properties>
