@@ -5,17 +5,19 @@
  */
 package sistematm;
 import javax.swing.JLabel;
+import java.sql.*;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Fakhri
  */
-public class MenuATM extends javax.swing.JFrame {
-    private String namaRek;
+public class LoginInterface extends javax.swing.JFrame {
+
     /**
-     * Creates new form MenuATM
+     * Creates new form MainInterface
      */
-    public MenuATM() {
+    public LoginInterface() {
         initComponents();
     }
 
@@ -28,136 +30,105 @@ public class MenuATM extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        menu1 = new javax.swing.JButton();
-        menu2 = new javax.swing.JButton();
-        menu3 = new javax.swing.JButton();
-        menu4 = new javax.swing.JButton();
-        menu5 = new javax.swing.JButton();
-        menu6 = new javax.swing.JButton();
-        menu7 = new javax.swing.JButton();
-        menu8 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        labelNama = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        norek = new javax.swing.JTextField();
+        katasandi = new javax.swing.JPasswordField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        buttonKonfirmasi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        menu1.setText("100.000");
+        jLabel1.setFont(new java.awt.Font("Lato Black", 0, 14)); // NOI18N
+        jLabel1.setText("SELAMAT DATANG DI ATM TEKNOFINANCE");
 
-        menu2.setText("500.000");
+        norek.setText(" ");
 
-        menu3.setText("BAYAR/BELI");
+        jLabel2.setText("Masukkan No. Rekening Anda");
 
-        menu4.setText("UANG ELEKTRONIK");
-        menu4.addActionListener(new java.awt.event.ActionListener() {
+        jLabel3.setText("Masukkan Kata Sandi");
+
+        buttonKonfirmasi.setText("Konfirmasi");
+        buttonKonfirmasi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu4ActionPerformed(evt);
+                buttonKonfirmasiActionPerformed(evt);
             }
         });
-
-        menu5.setText("300.000");
-        menu5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu5ActionPerformed(evt);
-            }
-        });
-
-        menu6.setText("1.000.000");
-        menu6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu6ActionPerformed(evt);
-            }
-        });
-
-        menu7.setText("PENARIKAN JUMLAH LAIN");
-        menu7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu7ActionPerformed(evt);
-            }
-        });
-
-        menu8.setText("TRANSAKSI LAINNYA");
-        menu8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu8ActionPerformed(evt);
-            }
-        });
-
-        labelNama.setColumns(20);
-        labelNama.setRows(5);
-        jScrollPane1.setViewportView(labelNama);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(menu1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(menu2, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(menu3, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(menu4, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(menu6, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(menu5, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(menu7, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(menu8, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36))
+                .addContainerGap(181, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(189, 189, 189))
             .addGroup(layout.createSequentialGroup()
-                .addGap(218, 218, 218)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(222, Short.MAX_VALUE))
+                .addGap(87, 87, 87)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(buttonKonfirmasi)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(norek, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
+                            .addComponent(katasandi)))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addGap(120, 120, 120)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(menu1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(menu5, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(norek, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(menu2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(menu6, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(menu3, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(menu7, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(menu4, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(menu8, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30))
+                    .addComponent(katasandi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(buttonKonfirmasi)
+                .addContainerGap(173, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void menu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menu4ActionPerformed
-
-    private void menu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menu5ActionPerformed
-
-    private void menu6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menu6ActionPerformed
-
-    private void menu7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu7ActionPerformed
-        // TODO add your handling code here:
-        PenarikanManual tarikManual = new PenarikanManual();
-        this.setVisible(false);
-        tarikManual.setVisible(true);
-    }//GEN-LAST:event_menu7ActionPerformed
-
-    private void menu8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menu8ActionPerformed
+    private void buttonKonfirmasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonKonfirmasiActionPerformed
+        String password = new String(katasandi.getPassword());
+        Statement stmt = null;
+        ResultSet rs = null;
+        Connection conn = null;
+        try {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/sistem_atm?" + "user=root&password=");
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM user WHERE norek='"
+                    +norek.getText().trim()
+                    +"' AND password='"+password+"'");
+            rs.next();
+            JOptionPane.showMessageDialog(this, "Selamat datang, "+rs.getString(3), "Sukses", JOptionPane.INFORMATION_MESSAGE);
+            new MenuNasabah().setVisible(true);
+            this.dispose();
+        }
+        catch(SQLException e){
+            System.out.println("SQLException: " + e.getMessage());
+            System.out.println("SQLState: " + e.getSQLState());
+            System.out.println("VendorError: " + e.getErrorCode());
+            JOptionPane.showMessageDialog(this, "Informasi login anda tidak valid.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        finally{
+            if(rs != null){
+                try {
+                    rs.close();
+                } catch (SQLException SQLEx){}
+                
+                stmt = null;
+            }
+        };
+    }//GEN-LAST:event_buttonKonfirmasiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -176,44 +147,31 @@ public class MenuATM extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuATM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuATM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuATM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuATM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuATM().setVisible(true);
+                new LoginInterface().setVisible(true);
             }
         });
     }
-    
-    public void setLabelNama(String nama){
-        this.labelNama.setText("MENU UTAMA\n"
-                + "PECAHAN UANG RP. 50000\n"
-                + "SELAMAT DATANG "
-                +nama
-                +"\n"
-                + "==============================\n"
-                + "TEKAN <CANCEL> UNTUK MEMBATALKAN");
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea labelNama;
-    private javax.swing.JButton menu1;
-    private javax.swing.JButton menu2;
-    private javax.swing.JButton menu3;
-    private javax.swing.JButton menu4;
-    private javax.swing.JButton menu5;
-    private javax.swing.JButton menu6;
-    private javax.swing.JButton menu7;
-    private javax.swing.JButton menu8;
+    private javax.swing.JButton buttonKonfirmasi;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPasswordField katasandi;
+    private javax.swing.JTextField norek;
     // End of variables declaration//GEN-END:variables
 }

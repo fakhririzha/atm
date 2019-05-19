@@ -24,26 +24,26 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="38" pref="38" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="menu1" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
-                  <Component id="menu2" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
-                  <Component id="menu3" min="-2" pref="205" max="-2" attributes="0"/>
-                  <Component id="menu4" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="menu6" min="-2" pref="205" max="-2" attributes="0"/>
-                  <Component id="menu5" min="-2" pref="205" max="-2" attributes="0"/>
-                  <Component id="menu7" min="-2" pref="205" max="-2" attributes="0"/>
-                  <Component id="menu8" min="-2" pref="205" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+              <EmptySpace pref="181" max="32767" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="189" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="218" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="328" max="-2" attributes="0"/>
-              <EmptySpace pref="222" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="buttonKonfirmasi" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="norek" pref="283" max="32767" attributes="0"/>
+                          <Component id="katasandi" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
           </Group>
       </Group>
     </DimensionLayout>
@@ -51,102 +51,57 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="123" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="menu1" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
-                  <Component id="menu5" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
+                  <Component id="norek" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="menu2" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
-                  <Component id="menu6" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
+                  <Component id="katasandi" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="menu3" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
-                  <Component id="menu7" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="menu4" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
-                  <Component id="menu8" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="buttonKonfirmasi" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="173" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="menu1">
+    <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="100.000"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lato Black" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="SELAMAT DATANG DI ATM TEKNOFINANCE"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="menu2">
+    <Component class="javax.swing.JTextField" name="norek">
       <Properties>
-        <Property name="text" type="java.lang.String" value="500.000"/>
+        <Property name="text" type="java.lang.String" value=" "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="menu3">
+    <Component class="javax.swing.JPasswordField" name="katasandi">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="BAYAR/BELI"/>
+        <Property name="text" type="java.lang.String" value="Masukkan No. Rekening Anda"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="menu4">
+    <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="UANG ELEKTRONIK"/>
+        <Property name="text" type="java.lang.String" value="Masukkan Kata Sandi"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menu4ActionPerformed"/>
-      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="menu5">
+    <Component class="javax.swing.JButton" name="buttonKonfirmasi">
       <Properties>
-        <Property name="text" type="java.lang.String" value="300.000"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menu5ActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="menu6">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="1.000.000"/>
+        <Property name="text" type="java.lang.String" value="Konfirmasi"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menu6ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonKonfirmasiActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="menu7">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="PENARIKAN JUMLAH LAIN"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menu7ActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="menu8">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="TRANSAKSI LAINNYA"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menu8ActionPerformed"/>
-      </Events>
-    </Component>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
-      <AuxValues>
-        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-      </AuxValues>
-
-      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-      <SubComponents>
-        <Component class="javax.swing.JTextArea" name="labelNama">
-          <Properties>
-            <Property name="columns" type="int" value="20"/>
-            <Property name="rows" type="int" value="5"/>
-          </Properties>
-        </Component>
-      </SubComponents>
-    </Container>
   </SubComponents>
 </Form>
