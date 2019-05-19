@@ -5,6 +5,8 @@
  */
 package sistematm;
 import javax.swing.JLabel;
+import java.sql.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -34,8 +36,6 @@ public class MainInterface extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         buttonKonfirmasi = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        textArea = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,10 +55,6 @@ public class MainInterface extends javax.swing.JFrame {
             }
         });
 
-        textArea.setColumns(20);
-        textArea.setRows(5);
-        jScrollPane1.setViewportView(textArea);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -69,7 +65,7 @@ public class MainInterface extends javax.swing.JFrame {
                 .addGap(189, 189, 189))
             .addGroup(layout.createSequentialGroup()
                 .addGap(87, 87, 87)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(buttonKonfirmasi)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -78,8 +74,7 @@ public class MainInterface extends javax.swing.JFrame {
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(norek, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
-                            .addComponent(katasandi)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)))
+                            .addComponent(katasandi)))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,30 +91,40 @@ public class MainInterface extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonKonfirmasi)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(173, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonKonfirmasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonKonfirmasiActionPerformed
-        // TODO add your handling code here:
-        String a,b;
-        a = norek.getText().trim();
-        b = katasandi.getText().trim();
-        ManajemenUser user = new ManajemenUser();
-        if(user.getNomorRekening().equals(a) && user.getKataSandi().equals(b))
-        {
-            MenuATM menu=new MenuATM();
-            menu.setLabelNama(user.getNamaRekening());
-            this.setVisible(false);
-            menu.setVisible(true);
+        String password = new String(katasandi.getPassword());
+        Statement stmt = null;
+        ResultSet rs = null;
+        Connection conn = null;
+        try {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/sistem_atm?" + "user=root&password=");
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM user WHERE norek='"
+                    +norek.getText().trim()
+                    +"' AND password='"+password+"'");
+            rs.next();
+            JOptionPane.showMessageDialog(this, rs.getString(2), "Success", JOptionPane.INFORMATION_MESSAGE);
         }
-        else {
-            textArea.setText("User tidak dapat ditemukan!");
+        catch(SQLException e){
+            System.out.println("SQLException: " + e.getMessage());
+            System.out.println("SQLState: " + e.getSQLState());
+            System.out.println("VendorError: " + e.getErrorCode());
         }
+        finally{
+            if(rs != null){
+                try {
+                    rs.close();
+                } catch (SQLException SQLEx){}
+                
+                stmt = null;
+            }
+        };
     }//GEN-LAST:event_buttonKonfirmasiActionPerformed
 
     /**
@@ -162,9 +167,7 @@ public class MainInterface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPasswordField katasandi;
     private javax.swing.JTextField norek;
-    private javax.swing.JTextArea textArea;
     // End of variables declaration//GEN-END:variables
 }
