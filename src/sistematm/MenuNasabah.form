@@ -26,105 +26,123 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="38" pref="38" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="menu1" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
-                  <Component id="menu2" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
-                  <Component id="menu3" min="-2" pref="205" max="-2" attributes="0"/>
-                  <Component id="menu4" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
+                  <Component id="limaratusRibu" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
+                  <Component id="bayarBeli" min="-2" pref="205" max="-2" attributes="0"/>
+                  <Component id="eMoney" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
+                  <Component id="seratusRibu" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="284" max="32767" attributes="0"/>
+              <EmptySpace pref="219" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="menu6" min="-2" pref="205" max="-2" attributes="0"/>
-                  <Component id="menu5" min="-2" pref="205" max="-2" attributes="0"/>
-                  <Component id="menu7" min="-2" pref="205" max="-2" attributes="0"/>
-                  <Component id="menu8" min="-2" pref="205" max="-2" attributes="0"/>
+                  <Component id="satuJuta" min="-2" pref="205" max="-2" attributes="0"/>
+                  <Component id="tigaratusRibu" min="-2" pref="205" max="-2" attributes="0"/>
+                  <Component id="tarikManual" min="-2" pref="205" max="-2" attributes="0"/>
+                  <Component id="transaksiLainnya" min="-2" pref="205" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="239" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" pref="224" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="152" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="62" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="menu1" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
-                  <Component id="menu5" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
+                  <Component id="seratusRibu" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
+                  <Component id="tigaratusRibu" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="menu2" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
-                  <Component id="menu6" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
+                  <Component id="limaratusRibu" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
+                  <Component id="satuJuta" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="menu3" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
-                  <Component id="menu7" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
+                  <Component id="bayarBeli" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
+                  <Component id="tarikManual" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="menu4" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
-                  <Component id="menu8" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
+                  <Component id="eMoney" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
+                  <Component id="transaksiLainnya" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+              <EmptySpace pref="70" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="menu1">
+    <Component class="javax.swing.JButton" name="seratusRibu">
       <Properties>
         <Property name="text" type="java.lang.String" value="100.000"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="seratusRibuActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="menu2">
+    <Component class="javax.swing.JButton" name="limaratusRibu">
       <Properties>
         <Property name="text" type="java.lang.String" value="500.000"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="menu3">
+    <Component class="javax.swing.JButton" name="bayarBeli">
       <Properties>
         <Property name="text" type="java.lang.String" value="BAYAR/BELI"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="menu4">
+    <Component class="javax.swing.JButton" name="eMoney">
       <Properties>
         <Property name="text" type="java.lang.String" value="UANG ELEKTRONIK"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menu4ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eMoneyActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="menu5">
+    <Component class="javax.swing.JButton" name="tigaratusRibu">
       <Properties>
         <Property name="text" type="java.lang.String" value="300.000"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menu5ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tigaratusRibuActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="menu6">
+    <Component class="javax.swing.JButton" name="satuJuta">
       <Properties>
         <Property name="text" type="java.lang.String" value="1.000.000"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menu6ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="satuJutaActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="menu7">
+    <Component class="javax.swing.JButton" name="tarikManual">
       <Properties>
         <Property name="text" type="java.lang.String" value="PENARIKAN JUMLAH LAIN"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menu7ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tarikManualActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="menu8">
+    <Component class="javax.swing.JButton" name="transaksiLainnya">
       <Properties>
         <Property name="text" type="java.lang.String" value="TRANSAKSI LAINNYA"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menu8ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="transaksiLainnyaActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Test"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

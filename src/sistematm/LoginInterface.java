@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package sistematm;
+import java.awt.event.KeyEvent;
 import javax.swing.JLabel;
 import java.sql.*;
 import javax.swing.JOptionPane;
@@ -39,14 +40,20 @@ public class LoginInterface extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Lato Black", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
         jLabel1.setText("SELAMAT DATANG DI ATM TEKNOFINANCE");
 
         norek.setText(" ");
 
+        katasandi.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                katasandiKeyPressed(evt);
+            }
+        });
+
         jLabel2.setText("Masukkan No. Rekening Anda");
 
-        jLabel3.setText("Masukkan Kata Sandi");
+        jLabel3.setText("Masukkan PIN Anda");
 
         buttonKonfirmasi.setText("Konfirmasi");
         buttonKonfirmasi.addActionListener(new java.awt.event.ActionListener() {
@@ -59,29 +66,31 @@ public class LoginInterface extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(181, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(189, 189, 189))
             .addGroup(layout.createSequentialGroup()
-                .addGap(87, 87, 87)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(buttonKonfirmasi)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(95, 95, 95)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(116, 116, 116)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(norek, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
-                            .addComponent(katasandi)))))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
+                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(katasandi)
+                            .addComponent(norek)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(517, 517, 517)
+                        .addComponent(buttonKonfirmasi)))
+                .addGap(0, 97, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(32, 32, 32)
                 .addComponent(jLabel1)
-                .addGap(120, 120, 120)
+                .addGap(99, 99, 99)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(norek, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
@@ -110,7 +119,7 @@ public class LoginInterface extends javax.swing.JFrame {
                     +"' AND password='"+password+"'");
             rs.next();
             JOptionPane.showMessageDialog(this, "Selamat datang, "+rs.getString(3), "Sukses", JOptionPane.INFORMATION_MESSAGE);
-            new MenuNasabah().setVisible(true);
+            new MenuNasabah(rs.getString(2), rs.getString(3)).setVisible(true);
             this.dispose();
         }
         catch(SQLException e){
@@ -129,6 +138,42 @@ public class LoginInterface extends javax.swing.JFrame {
             }
         };
     }//GEN-LAST:event_buttonKonfirmasiActionPerformed
+
+    private void katasandiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_katasandiKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+        {
+            String password = new String(katasandi.getPassword());
+            Statement stmt = null;
+            ResultSet rs = null;
+            Connection conn = null;
+            try {
+                conn = DriverManager.getConnection("jdbc:mysql://localhost/sistem_atm?" + "user=root&password=");
+                stmt = conn.createStatement();
+                rs = stmt.executeQuery("SELECT * FROM user WHERE norek='"
+                        +norek.getText().trim()
+                        +"' AND password='"+password+"'");
+                rs.next();
+                JOptionPane.showMessageDialog(this, "Selamat datang, "+rs.getString(3), "Sukses", JOptionPane.INFORMATION_MESSAGE);
+                new MenuNasabah(rs.getString(2), rs.getString(3)).setVisible(true);
+                this.dispose();
+            }
+            catch(SQLException e){
+                System.out.println("SQLException: " + e.getMessage());
+                System.out.println("SQLState: " + e.getSQLState());
+                System.out.println("VendorError: " + e.getErrorCode());
+                JOptionPane.showMessageDialog(this, "Informasi login anda tidak valid.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            finally{
+                if(rs != null){
+                    try {
+                        rs.close();
+                    } catch (SQLException SQLEx){}
+
+                    stmt = null;
+                }
+            };
+        }
+    }//GEN-LAST:event_katasandiKeyPressed
 
     /**
      * @param args the command line arguments

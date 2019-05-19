@@ -4,18 +4,21 @@
  * and open the template in the editor.
  */
 package sistematm;
-import javax.swing.JLabel;
+import java.sql.*;
 
 /**
  *
  * @author Fakhri
  */
 public class MenuNasabah extends javax.swing.JFrame {
+    private String norek;
     /**
      * Creates new form MenuATM
      */
-    public MenuNasabah() {
+    public MenuNasabah(String no_rek, String nama) {
+        this.norek = no_rek;
         initComponents();
+        jLabel1.setText("<html><center>SELAMAT DATANG DI ATM TEKNOFINANCE<br>(PECAHAN RP. 50.000)</center></html>");
     }
 
     /**
@@ -27,57 +30,66 @@ public class MenuNasabah extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        menu1 = new javax.swing.JButton();
-        menu2 = new javax.swing.JButton();
-        menu3 = new javax.swing.JButton();
-        menu4 = new javax.swing.JButton();
-        menu5 = new javax.swing.JButton();
-        menu6 = new javax.swing.JButton();
-        menu7 = new javax.swing.JButton();
-        menu8 = new javax.swing.JButton();
+        seratusRibu = new javax.swing.JButton();
+        limaratusRibu = new javax.swing.JButton();
+        bayarBeli = new javax.swing.JButton();
+        eMoney = new javax.swing.JButton();
+        tigaratusRibu = new javax.swing.JButton();
+        satuJuta = new javax.swing.JButton();
+        tarikManual = new javax.swing.JButton();
+        transaksiLainnya = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        menu1.setText("100.000");
-
-        menu2.setText("500.000");
-
-        menu3.setText("BAYAR/BELI");
-
-        menu4.setText("UANG ELEKTRONIK");
-        menu4.addActionListener(new java.awt.event.ActionListener() {
+        seratusRibu.setText("100.000");
+        seratusRibu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu4ActionPerformed(evt);
+                seratusRibuActionPerformed(evt);
             }
         });
 
-        menu5.setText("300.000");
-        menu5.addActionListener(new java.awt.event.ActionListener() {
+        limaratusRibu.setText("500.000");
+
+        bayarBeli.setText("BAYAR/BELI");
+
+        eMoney.setText("UANG ELEKTRONIK");
+        eMoney.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu5ActionPerformed(evt);
+                eMoneyActionPerformed(evt);
             }
         });
 
-        menu6.setText("1.000.000");
-        menu6.addActionListener(new java.awt.event.ActionListener() {
+        tigaratusRibu.setText("300.000");
+        tigaratusRibu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu6ActionPerformed(evt);
+                tigaratusRibuActionPerformed(evt);
             }
         });
 
-        menu7.setText("PENARIKAN JUMLAH LAIN");
-        menu7.addActionListener(new java.awt.event.ActionListener() {
+        satuJuta.setText("1.000.000");
+        satuJuta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu7ActionPerformed(evt);
+                satuJutaActionPerformed(evt);
             }
         });
 
-        menu8.setText("TRANSAKSI LAINNYA");
-        menu8.addActionListener(new java.awt.event.ActionListener() {
+        tarikManual.setText("PENARIKAN JUMLAH LAIN");
+        tarikManual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu8ActionPerformed(evt);
+                tarikManualActionPerformed(evt);
             }
         });
+
+        transaksiLainnya.setText("TRANSAKSI LAINNYA");
+        transaksiLainnya.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transaksiLainnyaActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("Test");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -86,65 +98,109 @@ public class MenuNasabah extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(menu1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(menu2, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(menu3, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(menu4, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 284, Short.MAX_VALUE)
+                    .addComponent(limaratusRibu, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bayarBeli, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(eMoney, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(seratusRibu, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 219, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(menu6, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(menu5, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(menu7, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(menu8, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(satuJuta, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tigaratusRibu, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tarikManual, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(transaksiLainnya, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(239, 239, 239)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(152, 152, 152)
+                .addGap(22, 22, 22)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(menu1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(menu5, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(seratusRibu, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tigaratusRibu, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(menu2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(menu6, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(limaratusRibu, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(satuJuta, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(menu3, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(menu7, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bayarBeli, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tarikManual, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(menu4, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(menu8, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30))
+                    .addComponent(eMoney, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(transaksiLainnya, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void menu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu4ActionPerformed
+    private void eMoneyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eMoneyActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_menu4ActionPerformed
+    }//GEN-LAST:event_eMoneyActionPerformed
 
-    private void menu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu5ActionPerformed
+    private void tigaratusRibuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tigaratusRibuActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_menu5ActionPerformed
+    }//GEN-LAST:event_tigaratusRibuActionPerformed
 
-    private void menu6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu6ActionPerformed
+    private void satuJutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_satuJutaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_menu6ActionPerformed
+    }//GEN-LAST:event_satuJutaActionPerformed
 
-    private void menu7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu7ActionPerformed
+    private void tarikManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tarikManualActionPerformed
         // TODO add your handling code here:
-        PenarikanManual tarikManual = new PenarikanManual();
-        this.setVisible(false);
-        tarikManual.setVisible(true);
-    }//GEN-LAST:event_menu7ActionPerformed
+    }//GEN-LAST:event_tarikManualActionPerformed
 
-    private void menu8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu8ActionPerformed
+    private void transaksiLainnyaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transaksiLainnyaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_menu8ActionPerformed
+    }//GEN-LAST:event_transaksiLainnyaActionPerformed
+
+    private void seratusRibuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seratusRibuActionPerformed
+
+        Statement stmt = null;
+        ResultSet rs = null;
+        Connection conn = null;
+        int saldoAkhir;
+        try {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/sistem_atm?" + "user=root&password=");
+            stmt = conn.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_UPDATABLE);
+            rs = stmt.executeQuery("SELECT * FROM saldo WHERE norek='"+norek+"'");
+            rs.next();
+            if(Integer.parseInt(rs.getString(2))<100000){
+                javax.swing.JOptionPane.showMessageDialog(this, "Saldo anda tidak cukup.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+                saldoAkhir = Integer.parseInt(rs.getString(2))-100000;
+                rs.updateInt(2, saldoAkhir);
+                rs.updateRow();
+                javax.swing.JOptionPane.showMessageDialog(this, "Transaksi anda sukses.", "Sukses", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                javax.swing.JOptionPane.showMessageDialog(this, "Sisa saldo anda: Rp. "+rs.getString(2)+",-", "Sukses", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+        catch(SQLException e){
+            System.out.println("SQLException: " + e.getMessage());
+            System.out.println("SQLState: " + e.getSQLState());
+            System.out.println("VendorError: " + e.getErrorCode());
+            javax.swing.JOptionPane.showMessageDialog(this, "Informasi login anda tidak valid.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+        finally{
+            if(rs != null){
+                try {
+                    rs.close();
+                } catch (SQLException SQLEx){}
+
+                stmt = null;
+            }
+        };
+    }//GEN-LAST:event_seratusRibuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -181,21 +237,22 @@ public class MenuNasabah extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuNasabah().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new MenuNasabah().setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton menu1;
-    private javax.swing.JButton menu2;
-    private javax.swing.JButton menu3;
-    private javax.swing.JButton menu4;
-    private javax.swing.JButton menu5;
-    private javax.swing.JButton menu6;
-    private javax.swing.JButton menu7;
-    private javax.swing.JButton menu8;
+    private javax.swing.JButton bayarBeli;
+    private javax.swing.JButton eMoney;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton limaratusRibu;
+    private javax.swing.JButton satuJuta;
+    private javax.swing.JButton seratusRibu;
+    private javax.swing.JButton tarikManual;
+    private javax.swing.JButton tigaratusRibu;
+    private javax.swing.JButton transaksiLainnya;
     // End of variables declaration//GEN-END:variables
 }
