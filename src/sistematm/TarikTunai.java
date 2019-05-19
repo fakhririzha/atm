@@ -170,9 +170,9 @@ public class TarikTunai extends javax.swing.JFrame {
                         stmt = null;
                     }
                 };
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, "Harus kelipatan Rp. 50.000,-", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
             }
-        } else {
-            javax.swing.JOptionPane.showMessageDialog(this, "Harus kelipatan Rp. 50.000,-", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_nominalTarikTunaiKeyPressed
 
