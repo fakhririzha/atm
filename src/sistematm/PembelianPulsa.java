@@ -4,17 +4,23 @@
  * and open the template in the editor.
  */
 package sistematm;
+import java.sql.*;
 
 /**
  *
  * @author Rafif Rasyidi
  */
 public class PembelianPulsa extends javax.swing.JFrame {
-
+    private String norek, nama;
     /**
      * Creates new form PembelianPulsa
      */
     public PembelianPulsa() {
+        initComponents();
+    }
+    public PembelianPulsa(String norek, String nama){
+        this.norek = norek;
+        this.nama = nama;
         initComponents();
     }
 
@@ -31,8 +37,8 @@ public class PembelianPulsa extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        nominalPulsa = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,26 +55,36 @@ public class PembelianPulsa extends javax.swing.JFrame {
         jLabel3.setText("NOMINAL");
 
         jButton1.setText("LANJUT");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        nominalPulsa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "10000", "20000", "25000", "50000", "100000", "200000", "300000" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(66, 66, 66)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE))
-                .addContainerGap(99, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(66, 66, 66)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE))
+                            .addComponent(jTextField1)
+                            .addComponent(nominalPulsa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1)))
+                .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -82,10 +98,10 @@ public class PembelianPulsa extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                    .addComponent(nominalPulsa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 148, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addGap(74, 74, 74))
+                .addGap(28, 28, 28))
         );
 
         pack();
@@ -94,6 +110,61 @@ public class PembelianPulsa extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Statement stmt = null;
+        Statement insert_stmt = null;
+        
+        ResultSet rs = null;
+        
+        Connection conn = null;
+        int saldoAkhir;
+        try {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/sistem_atm?" + "user=root&password=");
+            stmt = conn.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_UPDATABLE);
+            rs = stmt.executeQuery("SELECT * FROM saldo WHERE norek='"+norek+"'");
+            rs.next();
+            String nominal_pulsa = (String)nominalPulsa.getSelectedItem();
+            int nominalTransferVal = Integer.parseInt(nominal_pulsa);
+            
+            if(Integer.parseInt(rs.getString(2))<nominalTransferVal){
+                javax.swing.JOptionPane.showMessageDialog(this, "Saldo anda tidak cukup.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+                saldoAkhir = Integer.parseInt(rs.getString(2))-nominalTransferVal;
+                
+                rs.updateInt(2, saldoAkhir);
+                rs.updateRow();
+
+                insert_stmt = conn.createStatement();
+                insert_stmt.execute("INSERT INTO transfer (norek_pengirim, norek_tujuan, nominal, keterangan) "
+                        + "VALUES ('"+this.norek+"', 'PULSA', '"+nominal_pulsa+"', 'TOP UP E-CHANNEL PULSA')");
+
+                javax.swing.JOptionPane.showMessageDialog(this, "Transaksi anda sukses.", "Sukses", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                javax.swing.JOptionPane.showMessageDialog(this, "Sisa saldo anda: Rp. "+rs.getString(2)+",-", "Sukses", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                new Dashboard(this.norek, this.nama).setVisible(true);
+                this.dispose();
+            }
+        }
+        catch(SQLException e){
+            System.out.println("SQLException: " + e.getMessage());
+            System.out.println("SQLState: " + e.getSQLState());
+            System.out.println("VendorError: " + e.getErrorCode());
+            javax.swing.JOptionPane.showMessageDialog(this, "Transaksi Gagal.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+        finally{
+            if(rs != null){
+                try {
+                    rs.close();
+                } catch (SQLException SQLEx){}
+
+                stmt = null;
+            }
+        };
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -136,6 +207,6 @@ public class PembelianPulsa extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JComboBox<String> nominalPulsa;
     // End of variables declaration//GEN-END:variables
 }

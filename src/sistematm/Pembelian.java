@@ -10,11 +10,16 @@ package sistematm;
  * @author Rafif Rasyidi
  */
 public class Pembelian extends javax.swing.JFrame {
-
+    private String norek, nama;
     /**
      * Creates new form Pembelian
      */
     public Pembelian() {
+        initComponents();
+    }
+    public Pembelian(String norek, String nama){
+        this.norek = norek;
+        this.nama = nama;
         initComponents();
     }
 
@@ -28,28 +33,33 @@ public class Pembelian extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        gopay = new javax.swing.JButton();
+        pulsa = new javax.swing.JButton();
+        token = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("PEMBELIAN");
 
-        jButton1.setText("PEMBELIAN GO-PAY");
-
-        jButton2.setText("PEMBELIAN PULSA");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        gopay.setText("PEMBELIAN GO-PAY");
+        gopay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                gopayActionPerformed(evt);
             }
         });
 
-        jButton3.setText("PEMBELIAN TOKEN");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        pulsa.setText("PEMBELIAN PULSA");
+        pulsa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                pulsaActionPerformed(evt);
+            }
+        });
+
+        token.setText("PEMBELIAN TOKEN");
+        token.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tokenActionPerformed(evt);
             }
         });
 
@@ -64,9 +74,9 @@ public class Pembelian extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(gopay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pulsa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(token, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 164, Short.MAX_VALUE)
@@ -84,11 +94,11 @@ public class Pembelian extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(gopay)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(pulsa)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addComponent(token)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                 .addComponent(jButton4)
                 .addGap(48, 48, 48))
@@ -97,13 +107,23 @@ public class Pembelian extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void pulsaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pulsaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        new PembelianPulsa(this.norek, this.nama).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_pulsaActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void tokenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tokenActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        new PembelianToken(this.norek, this.nama).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_tokenActionPerformed
+
+    private void gopayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gopayActionPerformed
+        // TODO add your handling code here:
+        new PembelianGopay(this.norek, this.nama).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_gopayActionPerformed
 
     /**
      * @param args the command line arguments
@@ -141,10 +161,10 @@ public class Pembelian extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton gopay;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton pulsa;
+    private javax.swing.JButton token;
     // End of variables declaration//GEN-END:variables
 }
