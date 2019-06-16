@@ -40,7 +40,7 @@ public class LoginInterface extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
-        jLabel1.setText("SELAMAT DATANG DI ATM TEKNOFINANCE");
+        jLabel1.setText("SELAMAT DATANG DI M-BANKING TEKNOFINANCE");
 
         norek.setText(" ");
 
@@ -66,30 +66,30 @@ public class LoginInterface extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(95, 95, 95)
+                        .addGap(51, 51, 51)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(116, 116, 116)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(katasandi)
-                            .addComponent(norek)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(517, 517, 517)
-                        .addComponent(buttonKonfirmasi)))
-                .addGap(0, 97, Short.MAX_VALUE))
+                        .addGap(62, 62, 62)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(buttonKonfirmasi)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2))
+                                .addGap(21, 21, 21)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(katasandi)
+                                    .addComponent(norek, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(31, 31, 31)
                 .addComponent(jLabel1)
-                .addGap(99, 99, 99)
+                .addGap(100, 100, 100)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(norek, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
@@ -97,9 +97,9 @@ public class LoginInterface extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(katasandi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(buttonKonfirmasi)
-                .addContainerGap(173, Short.MAX_VALUE))
+                .addContainerGap(166, Short.MAX_VALUE))
         );
 
         pack();
@@ -118,7 +118,7 @@ public class LoginInterface extends javax.swing.JFrame {
                     +"' AND password='"+password+"'");
             rs.next();
             JOptionPane.showMessageDialog(this, "Selamat datang, "+rs.getString(3), "Sukses", JOptionPane.INFORMATION_MESSAGE);
-            new MenuNasabah(rs.getString(2), rs.getString(3)).setVisible(true);
+            new Dashboard(rs.getString(2), rs.getString(3)).setVisible(true);
             this.dispose();
         }
         catch(SQLException e){
@@ -153,7 +153,7 @@ public class LoginInterface extends javax.swing.JFrame {
                         +"' AND password='"+password+"'");
                 rs.next();
                 JOptionPane.showMessageDialog(this, "Selamat datang, "+rs.getString(3), "Sukses", JOptionPane.INFORMATION_MESSAGE);
-                new MenuNasabah(rs.getString(2), rs.getString(3)).setVisible(true);
+                new Dashboard(rs.getString(2), rs.getString(3)).setVisible(true);
                 this.dispose();
             }
             catch(SQLException e){

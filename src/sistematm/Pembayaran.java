@@ -10,11 +10,17 @@ package sistematm;
  * @author Rafif Rasyidi
  */
 public class Pembayaran extends javax.swing.JFrame {
-
+    private String norek, nama;
     /**
      * Creates new form Pembayaran
      */
     public Pembayaran() {
+        initComponents();
+    }
+    
+    public Pembayaran(String norek, String nama){
+        this.norek=norek;
+        this.nama=nama;
         initComponents();
     }
 
