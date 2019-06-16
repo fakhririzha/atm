@@ -180,8 +180,9 @@ public class TransferOnlineBank extends javax.swing.JFrame {
                 rs.updateRow();
 
                 insert_stmt = conn.createStatement();
+                String rekening_tujuan = kodeBank.getText().trim()+rekeningTujuan.getText().trim();
                 insert_stmt.execute("INSERT INTO transfer (norek_pengirim, norek_tujuan, nominal, keterangan) "
-                        + "VALUES ('"+this.norek+"', '"+rekeningTujuan.getText().trim()+"', '"+nominalTransfer.getText().trim()+"', '"+keteranganTransfer.getText().trim()+"')");
+                        + "VALUES ('"+this.norek+"', '"+rekening_tujuan+"', '"+nominalTransfer.getText().trim()+"', '"+keteranganTransfer.getText().trim()+"')");
 
                 javax.swing.JOptionPane.showMessageDialog(this, "Transaksi anda sukses.", "Sukses", javax.swing.JOptionPane.INFORMATION_MESSAGE);
                 javax.swing.JOptionPane.showMessageDialog(this, "Sisa saldo anda: Rp. "+rs.getString(2)+",-", "Sukses", javax.swing.JOptionPane.INFORMATION_MESSAGE);
