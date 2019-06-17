@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 20, 2019 at 11:30 AM
+-- Generation Time: Jun 17, 2019 at 11:23 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -43,7 +43,12 @@ CREATE TABLE `log_transaksi` (
 INSERT INTO `log_transaksi` (`tanggal`, `norek`, `nominal`, `saldo_awal`, `saldo_akhir`) VALUES
 ('2019-05-19 21:26:06', '1', 100000, 7599995, 7499995),
 ('2019-05-19 21:28:22', '1', 1000000, 7499995, 6499995),
-('2019-05-19 21:29:34', '1', -3500005, 6499995, 10000000);
+('2019-05-19 21:29:34', '1', -3500005, 6499995, 10000000),
+('2019-06-16 23:53:15', '2', -50000, 1000000, 1050000),
+('2019-06-16 23:53:16', '1', 50000, 10000000, 9950000),
+('2019-06-16 23:55:23', '2', -50000, 1050000, 1100000),
+('2019-06-16 23:55:23', '1', 50000, 9950000, 9900000),
+('2019-06-17 00:16:40', '1', 50000, 9900000, 9850000);
 
 -- --------------------------------------------------------
 
@@ -61,7 +66,9 @@ CREATE TABLE `saldo` (
 --
 
 INSERT INTO `saldo` (`norek`, `saldo`) VALUES
-('1', 10000000);
+('1', 9850000),
+('2', 1100000),
+('3', 1000000);
 
 --
 -- Triggers `saldo`
@@ -72,6 +79,28 @@ CREATE TRIGGER `log_trx` BEFORE UPDATE ON `saldo` FOR EACH ROW BEGIN
 END
 $$
 DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transfer`
+--
+
+CREATE TABLE `transfer` (
+  `id` int(11) NOT NULL,
+  `norek_pengirim` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `norek_tujuan` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `nominal` int(11) NOT NULL,
+  `keterangan` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `transfer`
+--
+
+INSERT INTO `transfer` (`id`, `norek_pengirim`, `norek_tujuan`, `nominal`, `keterangan`) VALUES
+(1, '1', '2', 50000, 'Sedekah'),
+(2, '1', '0011', 50000, 'Sedekah');
 
 -- --------------------------------------------------------
 
@@ -92,7 +121,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `norek`, `nama`, `password`, `role`) VALUES
-(1, '1', 'Fakhri Rizha Ananda', '1', 'nasabah');
+(1, '1', 'Fakhri Rizha Ananda', '1', 'nasabah'),
+(2, '2', 'Muhammad Rafif Rasyidi', '2', 'nasabah'),
+(3, '3', 'Ibnu Maulana', '3', 'nasabah');
 
 --
 -- Indexes for dumped tables
@@ -103,6 +134,12 @@ INSERT INTO `user` (`id`, `norek`, `nama`, `password`, `role`) VALUES
 --
 ALTER TABLE `saldo`
   ADD PRIMARY KEY (`norek`);
+
+--
+-- Indexes for table `transfer`
+--
+ALTER TABLE `transfer`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `user`
@@ -116,10 +153,16 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `transfer`
+--
+ALTER TABLE `transfer`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
