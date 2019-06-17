@@ -34,25 +34,25 @@ public class Pembayaran extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        bayarBPJS = new javax.swing.JButton();
+        bayarPBB = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("PEMBAYARAN");
 
-        jButton1.setText("PEMBAYARAN BPJS");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        bayarBPJS.setText("PEMBAYARAN BPJS");
+        bayarBPJS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                bayarBPJSActionPerformed(evt);
             }
         });
 
-        jButton2.setText("PEMBAYARAN PBB");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        bayarPBB.setText("PEMBAYARAN PBB");
+        bayarPBB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                bayarPBBActionPerformed(evt);
             }
         });
 
@@ -69,8 +69,8 @@ public class Pembayaran extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bayarBPJS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bayarPBB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton4)))
@@ -82,9 +82,9 @@ public class Pembayaran extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(54, 54, 54)
-                .addComponent(jButton1)
+                .addComponent(bayarBPJS)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(bayarPBB)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                 .addComponent(jButton4)
                 .addGap(46, 46, 46))
@@ -93,17 +93,17 @@ public class Pembayaran extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        new PembayaranBPJS(this.norek, this.nama).setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void bayarPBBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bayarPBBActionPerformed
         // TODO add your handling code here:
         new PembayaranPBB(this.norek, this.nama).setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_bayarPBBActionPerformed
+
+    private void bayarBPJSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bayarBPJSActionPerformed
+        // TODO add your handling code here:
+        new PembayaranBPJS(this.norek, this.nama).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_bayarBPJSActionPerformed
 
     /**
      * @param args the command line arguments
@@ -141,8 +141,8 @@ public class Pembayaran extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton bayarBPJS;
+    private javax.swing.JButton bayarPBB;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
